@@ -1,0 +1,117 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  market    String   @default("MY") // Enum: MY, SG
+  locale    String   @default("en") // Enum: en, ms
+  referralCode String? @unique @map("referral_code")
+  
+  sponsorId String?  @map("sponsor_id")
+  sponsor   User?    @relation("ReferralHistory", fields: [sponsorId], references: [id])
+  downlines User[]   @relation("ReferralHistory")
+
+  createdAt DateTime @default(now()) @map("created_at")
+
+  orders      Order[]
+  memberStats MemberStats?
+  rewards     UserReward[]
+
+  @@map("users")
+  @@index([sponsorId])
+}
+
+model Product {
+  id          String  @id @default(cuid())
+  name        String
+  description String?
+  priceMyr    Decimal @map("price_myr")
+  priceSgd    Decimal @map("price_sgd")
+  pvValue     Int     @map("pv_value")
+  active      Boolean @default(true)
+
+  orderItems OrderItem[]
+
+  @@map("products")
+}
+
+model Order {
+  id          String      @id @default(cuid())
+  userId      String      @map("user_id")
+  market      String      // Enum: MY, SG
+  currency    String      // MYR or SGD
+  totalAmount Decimal     @map("total_amount")
+  totalPv     Int         @map("total_pv")
+  status      String      @default("PENDING") // Enum: PENDING, PAID, SHIPPED, COMPLETED, CANCELLED
+  createdAt   DateTime    @default(now()) @map("created_at")
+
+  user       User        @relation(fields: [userId], references: [id])
+  orderItems OrderItem[]
+
+  @@index([userId])
+  @@map("orders")
+}
+
+model OrderItem {
+  id        String  @id @default(cuid())
+  orderId   String  @map("order_id")
+  productId String  @map("product_id")
+  qty       Int
+  unitPrice Decimal @map("unit_price")
+  unitPv    Int     @map("unit_pv")
+
+  order   Order   @relation(fields: [orderId], references: [id])
+  product Product @relation(fields: [productId], references: [id])
+
+  @@index([orderId])
+  @@map("order_items")
+}
+
+model MemberStats {
+  id         String   @id @default(cuid())
+  userId     String   @unique @map("user_id")
+  pvMonth    Int      @default(0) @map("pv_month")
+  pvLifetime Int      @default(0) @map("pv_lifetime")
+  rank       String   @default("SILVER") // Enum: SILVER, GOLD, PLATINUM
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  user User @relation(fields: [userId], references: [id])
+
+  @@map("member_stats")
+}
+
+model RewardRule {
+  id          String     @id @default(cuid())
+  name        String
+  pvThreshold Int        @map("pv_threshold")
+  rewardType  String     @map("reward_type") // Enum: VOUCHER, SHIPPING, STATUS
+  rewardValue String?    @map("reward_value") // e.g. "20", "FREE_SHIP"
+  active      Boolean    @default(true)
+  users       UserReward[]
+
+  @@map("reward_rules")
+}
+
+model UserReward {
+  id         String       @id @default(cuid())
+  userId     String       @map("user_id")
+  ruleId     String       @map("rule_id")
+  status     String       @default("ISSUED") // Enum: ISSUED, REDEEMED, EXPIRED
+  issuedAt   DateTime     @default(now()) @map("issued_at")
+  redeemedAt DateTime?    @map("redeemed_at")
+
+  rule       RewardRule @relation(fields: [ruleId], references: [id])
+  user       User       @relation(fields: [userId], references: [id])
+
+  @@index([userId])
+  @@index([ruleId])
+  @@map("user_rewards")
+}

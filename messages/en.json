@@ -1,0 +1,28 @@
+{
+    "Navigation": {
+        "home": "Home",
+        "shop": "Shop",
+        "dashboard": "Dashboard",
+        "admin": "Admin",
+        "login": "Login",
+        "signup": "Sign Up",
+        "logout": "Logout",
+        "myAccount": "My Account",
+        "rewards": "Rewards"
+    },
+    "Home": {
+        "welcome": "Welcome to Bifrost Commerce",
+        "subtitle": "Experience the future of e-commerce. Multi-market, rewards-driven, and seamless.",
+        "shopNow": "Shop Now",
+        "joinNow": "Join Now"
+    },
+    "Shop": {
+        "title": "Shop",
+        "addToCart": "Add to Cart",
+        "price": "Price"
+    },
+    "Common": {
+        "loading": "Loading...",
+        "error": "Something went wrong"
+    }
+}

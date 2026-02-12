@@ -1,0 +1,28 @@
+{
+    "Navigation": {
+        "home": "Utama",
+        "shop": "Kedai",
+        "dashboard": "Papan Pemuka",
+        "admin": "Admin",
+        "login": "Log Masuk",
+        "signup": "Daftar",
+        "logout": "Log Keluar",
+        "myAccount": "Akaun Saya",
+        "rewards": "Ganjaran"
+    },
+    "Home": {
+        "welcome": "Selamat Datang ke Bifrost Commerce",
+        "subtitle": "Alami masa depan e-dagang. Pelbagai pasaran, berasaskan ganjaran, dan lancar.",
+        "shopNow": "Beli Sekarang",
+        "joinNow": "Sertai Sekarang"
+    },
+    "Shop": {
+        "title": "Kedai",
+        "addToCart": "Tambah ke Troli",
+        "price": "Harga"
+    },
+    "Common": {
+        "loading": "Memuatkan...",
+        "error": "Sesuatu telah berlaku"
+    }
+}
