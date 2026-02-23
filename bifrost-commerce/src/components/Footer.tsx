@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { useLocaleStore } from '@/lib/store';
 import { t } from '@/lib/i18n';
 
@@ -23,14 +24,7 @@ export default function Footer() {
                     {/* Brand */}
                     <div>
                         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
-                            <div style={{
-                                width: 36, height: 36, borderRadius: 10,
-                                background: 'linear-gradient(135deg, var(--color-primary), var(--color-primary-light))',
-                                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                                color: 'white', fontWeight: 800, fontSize: 18, fontFamily: 'var(--font-serif)',
-                            }}>
-                                B
-                            </div>
+                            <Image src="/logo.png" alt="CommerceFlow Logo" width={36} height={36} style={{ borderRadius: 8 }} />
                             <span style={{ fontFamily: 'var(--font-serif)', fontSize: 20, fontWeight: 700, color: 'white' }}>
                                 CommerceFlow
                             </span>

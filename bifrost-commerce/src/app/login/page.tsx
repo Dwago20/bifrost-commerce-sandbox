@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Eye, EyeOff, Mail, Lock, ArrowRight, Sparkles } from 'lucide-react';
 
 export default function LoginPage() {
@@ -22,7 +23,7 @@ export default function LoginPage() {
     return (
         <div style={{
             minHeight: '100vh', display: 'flex',
-            background: 'linear-gradient(135deg, #F8F7F4 0%, #EDE9FE 50%, #FDF2F8 100%)',
+            background: 'linear-gradient(135deg, #F8F7F4 0%, var(--color-primary-50) 50%, #F0FDF4 100%)',
         }}>
             {/* Left: Visual */}
             <div style={{
@@ -33,14 +34,8 @@ export default function LoginPage() {
                     position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: 460,
                 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, justifyContent: 'center', marginBottom: 24 }}>
-                        <div style={{
-                            width: 48, height: 48, borderRadius: 14,
-                            background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%)',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        }}>
-                            <Sparkles size={24} color="white" />
-                        </div>
-                        <span style={{ fontSize: 28, fontWeight: 800, background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                        <Image src="/logo.png" alt="CommerceFlow Logo" width={48} height={48} style={{ borderRadius: 14 }} />
+                        <span style={{ fontSize: 28, fontWeight: 800, color: 'var(--color-primary)' }}>
                             CommerceFlow
                         </span>
                     </div>
@@ -55,12 +50,12 @@ export default function LoginPage() {
                 {/* Background decoration */}
                 <div style={{
                     position: 'absolute', width: 400, height: 400, borderRadius: '50%',
-                    background: 'radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle, rgba(13,148,136,0.08) 0%, transparent 70%)',
                     top: '20%', left: '10%',
                 }} />
                 <div style={{
                     position: 'absolute', width: 300, height: 300, borderRadius: '50%',
-                    background: 'radial-gradient(circle, rgba(236,72,153,0.06) 0%, transparent 70%)',
+                    background: 'radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)',
                     bottom: '10%', right: '15%',
                 }} />
             </div>

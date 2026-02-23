@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Eye, EyeOff, Mail, Lock, User, Phone, ArrowRight, Sparkles, Gift, TrendingUp, Users } from 'lucide-react';
 
 export default function RegisterPage() {
@@ -32,7 +33,7 @@ export default function RegisterPage() {
     return (
         <div style={{
             minHeight: '100vh', display: 'flex',
-            background: 'linear-gradient(135deg, #F8F7F4 0%, #EDE9FE 50%, #FDF2F8 100%)',
+            background: 'linear-gradient(135deg, #F8F7F4 0%, var(--color-primary-50) 50%, #F0FDF4 100%)',
         }}>
             {/* Left: Benefits */}
             <div style={{
@@ -41,14 +42,8 @@ export default function RegisterPage() {
             }}>
                 <div className="animate-fade-in-up" style={{ position: 'relative', zIndex: 1, maxWidth: 420 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 32 }}>
-                        <div style={{
-                            width: 48, height: 48, borderRadius: 14,
-                            background: 'linear-gradient(135deg, var(--color-primary) 0%, var(--color-accent) 100%)',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        }}>
-                            <Sparkles size={24} color="white" />
-                        </div>
-                        <span style={{ fontSize: 28, fontWeight: 800, background: 'linear-gradient(135deg, var(--color-primary), var(--color-accent))', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
+                        <Image src="/logo.png" alt="CommerceFlow Logo" width={48} height={48} style={{ borderRadius: 14 }} />
+                        <span style={{ fontSize: 28, fontWeight: 800, color: 'var(--color-primary)' }}>
                             CommerceFlow
                         </span>
                     </div>

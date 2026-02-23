@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { ShoppingBag, Menu, X, Search, Globe, User, ChevronDown } from 'lucide-react';
 import { useCartStore, useLocaleStore, useUIStore } from '@/lib/store';
 import { t } from '@/lib/i18n';
@@ -52,14 +53,7 @@ export default function Navbar() {
                 <div className="container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 72 }}>
                     {/* Logo */}
                     <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 10 }}>
-                        <div style={{
-                            width: 36, height: 36, borderRadius: 10,
-                            background: 'linear-gradient(135deg, var(--color-primary), var(--color-primary-light))',
-                            display: 'flex', alignItems: 'center', justifyContent: 'center',
-                            color: 'white', fontWeight: 800, fontSize: 18, fontFamily: 'var(--font-serif)',
-                        }}>
-                            B
-                        </div>
+                        <Image src="/logo.png" alt="CommerceFlow Logo" width={36} height={36} style={{ borderRadius: 8 }} />
                         <span style={{ fontFamily: 'var(--font-serif)', fontSize: 20, fontWeight: 700, color: 'var(--color-text-primary)' }}>
                             CommerceFlow
                         </span>
